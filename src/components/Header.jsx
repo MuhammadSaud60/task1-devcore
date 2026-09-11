@@ -1,4 +1,5 @@
 import { motion } from "motion/react"; // or "motion/react" depending on your Framer Motion version
+import { BriefcaseBusiness, House, Mail, Workflow } from "lucide-react";
 import React, { useState } from "react";
 import useUserActivity from "../hooks/useUserActivity"; // Adjusted to a standard relative path
 
@@ -7,25 +8,25 @@ const Nav = () => {
     {
       id: 1,
       title: "Home",
-      img: "/img-1.jpeg", // replace with actual path
+      icon: House,
       link: "#home",
     },
     {
       id: 2,
       title: "Services",
-      img: "/img-2.jpeg",
+      icon: BriefcaseBusiness,
       link: "#about",
     },
     {
       id: 3,
       title: "Process",
-      img: "/img-3.jpeg",
+      icon: Workflow,
       link: "#projects",
     },
     {
       id: 4,
       title: "Contact",
-      img: "/img-4.jpeg",
+      icon: Mail,
       link: "#contact",
     },
   ];
@@ -37,7 +38,7 @@ const Nav = () => {
   return (
 
     <div>
-        <div className="logo block bg-black text-white p-3 text-4xl text-center md:text-left lg:text-left outline-0">
+        <div className="font-sans font-black tracking-tighter text-2xl md:text-3xl text-white bg-black p-4 text-center md:text-left lg:text-left uppercase select-none">
             <h2>DEVCORE</h2>
         </div>
       <div
@@ -140,7 +141,7 @@ const Nav = () => {
         className="fixed bottom-3 left-1/2 -translate-x-1/2 h-[480px] z-[990] w-full max-w-xs md:max-w-xl rounded-2xl bg-black text-white flex flex-col items-start cursor-pointer py-6 px-8 overflow-hidden"
       >
         <div className="w-full flex justify-between items-center ">
-          <h2 className="text-xl md:text-2xl ">SOFTWARE</h2>{" "}
+          <h2 className="text-xl md:text-2xl ">DEVCORE YOUR TECH PARTNER</h2>{" "}
         
         </div>
         <ul className="w-full mt-5  ">
@@ -149,14 +150,11 @@ const Nav = () => {
               key={idx}
               className="h-20 w-full flex items-center gap-4 p-4 border-b border-stone-800 group"
             >
-              <div className="h-16 overflow-hidden">
-                {/* Changed Next.js Image to standard img tag */}
-                <img
-                  src={item.img}
-                  alt={item.title}
-                  height={64}
-                  width={64}
-                  className="w-full h-full object-contain group-hover:scale-125  transform-all ease-in-out duration-300"
+              <div className="flex h-16 w-16 items-center justify-center">
+                <item.icon
+                  aria-hidden="true"
+                  strokeWidth={1.5}
+                  className="h-10 w-10 text-white transition-transform duration-300 ease-in-out group-hover:scale-125"
                 />
               </div>
               <h2 className="text-2xl group-hover:translate-x-4 transform-all ease-in-out duration-300">
