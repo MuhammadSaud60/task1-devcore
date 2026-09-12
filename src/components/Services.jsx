@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { ArrowUpRight } from "lucide-react";
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 const services = [
   {
@@ -79,11 +79,10 @@ const Work = () => {
       gsap.set(slides, { autoAlpha: 0 });
       gsap.set(slides[0], { autoAlpha: 1 });
       gsap.set(images, {
-        scale: 1,
+        scale: 1.08,
         opacity: 1,
         transformOrigin: "center center",
       });
-      gsap.set(images.slice(1), { scale: 1.2 });
 
       const timeline = gsap.timeline({
         scrollTrigger: {
@@ -103,53 +102,49 @@ const Work = () => {
 
         timeline
           .to(
-            previousSlide.querySelector(".service-copy"),
+            previousSlide,
             {
-              y: 40,
+              yPercent: 100,
               opacity: 0,
-              scale: 0.98,
-              duration: 0.45,
-              ease: "power2.in",
+              duration: 0.9,
+              ease: "power3.in",
             },
             step
           )
           .to(
             previousSlide.querySelector(".service-image"),
             {
-              opacity: 0,
-              scale: 0.96,
+              scale: 1.16,
               duration: 0.9,
-              ease: "power1.inOut",
+              ease: "power2.in",
             },
             step
           )
-          .to(previousSlide, { autoAlpha: 0, duration: 0.01 }, step + 0.9)
           .fromTo(
             slide,
-            { autoAlpha: 0, y: -40 },
-            { autoAlpha: 1, y: 0, duration: 0.55, ease: "power2.out" },
-            step + 0.45
+            { autoAlpha: 0, yPercent: -18 },
+            { autoAlpha: 1, yPercent: 0, duration: 0.85, ease: "power3.out" },
+            step + 0.25
           )
           .fromTo(
             slide.querySelector(".service-copy"),
-            { y: -40, opacity: 0, scale: 0.98 },
+            { y: 32, opacity: 0 },
             {
               y: 0,
               opacity: 1,
-              scale: 1,
-              duration: 0.55,
-              ease: "power2.out",
+              duration: 0.7,
+              ease: "power3.out",
             },
-            step + 0.45
+            step + 0.4
           )
           .to(
             images[index + 1],
             {
               scale: 1,
-              duration: 0.65,
-              ease: "power1.inOut",
+              duration: 0.9,
+              ease: "power3.out",
             },
-            step + 0.4
+            step + 0.25
           );
       });
     }, containerRef);
@@ -162,6 +157,12 @@ const Work = () => {
       ref={containerRef}
       className="relative z-[400] h-screen overflow-hidden bg-white text-black"
     >
+      <div className="pointer-events-none absolute left-4 top-5 z-20 sm:left-10 sm:top-8 lg:left-16 lg:top-10">
+      
+        <h1 className="mt-1 text-3xl font-bold tracking-tight sm:text-5xl">
+          SERVICES
+        </h1>
+      </div>
       <div className="relative mx-auto grid h-full w-full max-w-7xl grid-cols-1 gap-4 px-4 py-6 sm:gap-8 sm:px-10 sm:py-12 lg:grid-cols-2 lg:gap-16 lg:px-16 lg:py-16">
         {services.map((service, index) => (
           <ServiceSlide
@@ -190,7 +191,7 @@ const ServiceSlide = ({
   return (
     <article
       ref={slideRef}
-      className="absolute inset-0 grid grid-cols-1 gap-4 overflow-hidden px-4 py-6 sm:gap-8 sm:px-10 sm:py-12 lg:grid-cols-2 lg:gap-16 lg:px-16 lg:py-16"
+      className="absolute inset-0 grid grid-cols-1 gap-4 overflow-hidden px-4 pt-28 pb-6 sm:gap-8 sm:px-10 sm:pt-32 sm:pb-12 lg:grid-cols-2 lg:gap-16 lg:px-16 lg:py-16"
     >
       <div className="service-copy flex min-h-0 flex-col justify-start lg:justify-center lg:pr-8">
         <span className="mb-2 text-xs font-medium tracking-[0.25em] text-black/45 sm:mb-5 sm:text-sm">
